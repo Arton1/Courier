@@ -8,4 +8,5 @@ class Company {
 	int money;
 
 	Company();
+
 };

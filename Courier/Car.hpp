@@ -1,4 +1,7 @@
 #pragma once
+#include <vector>
+
+typedef Package;
 
 class Car {
 	enum State {ROUTE, NOTHING, SERVICE};
@@ -7,6 +10,15 @@ class Car {
 	int tankCapacity;
 	int state;
 	bool needRepairing;
+	std::vector<Package> packages;
 
+public:
 	Car();
+	void buy();
+	void sell();
+	void go();
+	void unload();
+	void load();
+	void operator<<(Package package);
+	void repair();
 };

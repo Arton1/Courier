@@ -7,6 +7,6 @@ class Package {
 	std::string name;
 	int id;
 	std::string toWhere;
-
+public:
 	Package();
 };
