@@ -9,4 +9,5 @@ class Package {
 	std::string toWhere;
 public:
 	Package();
+	~Package() {};
 };

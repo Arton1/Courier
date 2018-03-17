@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-typedef Car;
+class Car;
 
 class Warehouse {
 	std::string location;

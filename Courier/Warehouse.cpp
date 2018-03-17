@@ -1,5 +1,7 @@
 #include "Warehouse.hpp"
 
-Warehouse::Warehouse() {
+Warehouse::Warehouse():
+	location("Location")
+{
 
 }

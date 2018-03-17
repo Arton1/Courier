@@ -98,7 +98,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -148,12 +148,14 @@
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Package.cpp" />
+    <ClCompile Include="Simulator.cpp" />
     <ClCompile Include="Warehouse.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Car.hpp" />
     <ClInclude Include="Company.hpp" />
     <ClInclude Include="Package.hpp" />
+    <ClInclude Include="Simulator.hpp" />
     <ClInclude Include="Warehouse.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

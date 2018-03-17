@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-typedef Package;
+class Package;
 
 class Car {
 	enum State {ROUTE, NOTHING, SERVICE};
@@ -14,6 +14,7 @@ class Car {
 
 public:
 	Car();
+	~Car() {};
 	void buy();
 	void sell();
 	void go();

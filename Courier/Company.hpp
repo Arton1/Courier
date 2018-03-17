@@ -1,12 +1,13 @@
 #pragma once
 #include <vector>
 
-typedef Warehouse;
+class Warehouse;
 
 class Company {
 	std::vector<Warehouse> warehouses;
 	int money;
-
+	
+public:
 	Company();
-
+	~Company() {};
 };
