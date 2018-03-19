@@ -1,8 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-
-class Car;
+#include "Car.hpp"
 
 class Warehouse {
 	std::string location;

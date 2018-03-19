@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
-
-class Package;
+#include "Package.hpp"
 
 class Car {
 	enum State {ROUTE, NOTHING, SERVICE};

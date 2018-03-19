@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
-
-class Warehouse;
+#include "Warehouse.hpp"
 
 class Company {
 	std::vector<Warehouse> warehouses;

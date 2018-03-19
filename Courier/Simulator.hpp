@@ -1,7 +1,6 @@
 #pragma once
 #include <memory>
-
-class Company;
+#include "Company.hpp"
 
 class Simulator {
 	std::unique_ptr<Company> company;

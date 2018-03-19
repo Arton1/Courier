@@ -6,6 +6,7 @@ Car::Car() {
 }
 
 void Car::buy() {
+
 }
 
 void Car::sell(){

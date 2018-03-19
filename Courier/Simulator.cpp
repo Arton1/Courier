@@ -37,6 +37,7 @@ void Simulator::simulate() {
 		cout << "Please choose your option:" << endl;
 		cout << "1 - Go into another day." << endl;
 		cout << "2 - Quit" << endl;
+		cin >> option;
 		switch (option) {
 		case 1:
 			setNextDay();
