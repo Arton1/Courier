@@ -1,11 +1,21 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "Car.hpp"
+
+class Car;
+class Company;
 
 class Warehouse {
-	std::string location;
-	std::vector<Car> cars;
+	int id;
+	std::vector<Car*> carsInWarehouse;
 public:
 	Warehouse();
+	std::string getName();
+	void moveCars();
+
+	static const int AMOUNTOFWAREHOUSES = 6;
+private:
+	static const std::string LOCATION[AMOUNTOFWAREHOUSES];
+	static const int AMOUNTOFCARS = 10;
+	static int numberOfWarehouses;
 };

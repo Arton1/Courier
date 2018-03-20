@@ -1,5 +1,6 @@
 #include "Company.hpp"
 #include "Simulator.hpp"
+#include "Warehouse.hpp"
 #include <iostream>
 #include <chrono>
 #include <random>
@@ -10,6 +11,7 @@ Simulator::Simulator() :
 	daysCounter(0)
 {
 	company = make_unique<Company>();
+	company->buildWarehouse(5);
 }
 
 void Simulator::menu() {
@@ -36,6 +38,7 @@ void Simulator::simulate() {
 	cout << endl;
 	char option;
 	while (1) {
+		cout << endl;
 		cout << "Please choose your option:" << endl;
 		cout << "1 - Go into another day." << endl;
 		cout << "2 - Quit" << endl;
@@ -47,7 +50,7 @@ void Simulator::simulate() {
 		case '2':
 			return;
 		case '3':
-			cout << getRandomSeed() << endl;
+			
 			break;
 		default:
 			break;
@@ -57,6 +60,8 @@ void Simulator::simulate() {
 
 void Simulator::setNextDay() { //losowanie sytuacji kolejnego dnia
 	daysCounter++;
+	for(int i=0; i<Warehouse::AMOUNTOFWAREHOUSES; i++)
+//		company[i]
 }
 
 int getRandomSeed() {

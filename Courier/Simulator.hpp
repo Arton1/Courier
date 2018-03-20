@@ -3,7 +3,7 @@
 #include "Company.hpp"
 
 class Simulator {
-	std::unique_ptr<Company> company;
+    Company company;
 	int daysCounter;
 	void simulate();
 	void setNextDay();

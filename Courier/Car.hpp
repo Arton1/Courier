@@ -2,6 +2,8 @@
 #include <vector>
 #include "Package.hpp"
 
+class Company;
+
 class Car {
 	enum State {ROUTE, NOTHING, SERVICE};
 	
@@ -13,10 +15,8 @@ class Car {
 
 public:
 	Car();
-	~Car() {};
-	void buy();
-	void sell();
-	void go();
+	static Car& Car::buy();
+	void go(int idOfWarehouse);
 	void unload();
 	void load();
 	void operator<<(Package package);
