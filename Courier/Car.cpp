@@ -1,7 +1,12 @@
 #include "Car.hpp"
 #include "Package.hpp"
 
-Car::Car() {
+Car::Car():
+	mileage(0),
+	tankCapacity(100),
+	needRepairing(false),
+	state(State::NOTHING)
+{
 
 }
 
@@ -14,7 +19,7 @@ void Car::sell(){
 }
 
 void Car::go() {
-	this->state = State::ROUTE;
+	state = State::ROUTE;
 }
 
 void Car::unload() {
@@ -30,5 +35,6 @@ void Car::operator<<(Package package) {
 }
 
 void Car::repair() {
-
+	needRepairing = false;
+	return;
 }

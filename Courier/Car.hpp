@@ -7,7 +7,7 @@ class Car {
 	
 	int mileage;
 	int tankCapacity;
-	int state;
+	State state;
 	bool needRepairing;
 	std::vector<Package> packages;
 

@@ -12,3 +12,5 @@ public:
 	~Simulator() {};
 	void menu();
 };
+
+int getRandomSeed();
