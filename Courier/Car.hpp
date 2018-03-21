@@ -15,10 +15,15 @@ class Car {
 
 public:
 	Car();
-	static Car& Car::buy();
 	void go(int idOfWarehouse);
 	void unload();
 	void load();
 	void operator<<(Package package);
 	void repair();
+
+	//getters
+	int getMileage() const;
+	int getTankCapacity() const;
+	int getState() const;
+	bool getNeedRepairing() const;
 };

@@ -1,5 +1,7 @@
 #include "Warehouse.hpp"
 
+int Warehouse::numberOfWarehouses = 0;
+
 const std::string Warehouse::LOCATION[Warehouse::AMOUNTOFWAREHOUSES] = {
 	"Warszawa",
 	"Krakow",
@@ -12,8 +14,6 @@ const std::string Warehouse::LOCATION[Warehouse::AMOUNTOFWAREHOUSES] = {
 Warehouse::Warehouse():
 	id(numberOfWarehouses++)
 {
-	
-		
 }
 
 std::string Warehouse::getName() {

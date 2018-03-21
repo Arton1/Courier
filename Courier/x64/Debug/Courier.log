@@ -1,1 +1,3 @@
-﻿  Courier.vcxproj -> C:\Users\ACER\Documents\GitHub\Courier\x64\Debug\Courier.exe
+﻿  Company.cpp
+c:\users\acer\documents\github\courier\courier\company.cpp(22): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Courier.vcxproj -> C:\Users\ACER\Documents\GitHub\Courier\x64\Debug\Courier.exe

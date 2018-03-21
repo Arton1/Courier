@@ -11,7 +11,6 @@ class Warehouse {
 public:
 	Warehouse();
 	std::string getName();
-	void moveCars();
 
 	static const int AMOUNTOFWAREHOUSES = 6;
 private:

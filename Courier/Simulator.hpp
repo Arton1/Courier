@@ -6,7 +6,9 @@ class Simulator {
     Company company;
 	int daysCounter;
 	void simulate();
-	void setNextDay();
+	void printInfo();
+	void printCarsInfo();
+	void sellOption();
 public:
 	Simulator();
 	~Simulator() {};

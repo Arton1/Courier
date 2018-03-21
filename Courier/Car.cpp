@@ -31,6 +31,15 @@ void Car::repair() {
 	return;
 }
 
-Car& Car::buy() {
-	
+int Car::getMileage() const {
+	return mileage;
+}
+int Car::getTankCapacity() const {
+	return tankCapacity;
+}
+int Car::getState() const {
+	return state;
+}
+bool Car::getNeedRepairing() const {
+	return needRepairing;
 }
