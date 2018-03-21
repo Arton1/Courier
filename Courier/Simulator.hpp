@@ -10,6 +10,7 @@ class Simulator {
 	void printCarsInfo();
 	bool sellOption();
 	bool moveOption();
+	bool refillOption();
 public:
 	Simulator();
 	~Simulator() {};

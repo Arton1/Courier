@@ -6,7 +6,7 @@ class Company;
 class Warehouse;
 
 class Car {
-	enum State {ROUTE, NOTHING, SERVICE};
+	enum State {ROUTE, NOTHING, SERVICE, STUCK};
 	static const int MAXTIME = 4;
 
 	int mileage;
@@ -16,6 +16,9 @@ class Car {
 	std::vector<Package> packages;
 	Warehouse *location;
 	int timer;
+private:
+	void setTimer();
+	void setState(State state);
 public:
 	Car(Warehouse &warehouse);
 	void go(Warehouse &warehouse);
@@ -23,6 +26,7 @@ public:
 	void load();
 	void operator<<(Package package);
 	void repair();
+	void refill();
 	void changeOverTime();
 
 	//getters

@@ -13,11 +13,45 @@ Car::Car(Warehouse &warehouse) :
 	location = &warehouse;
 }
 
+void Car::changeOverTime() {
+	switch (state) {
+	case State::ROUTE:
+		tankCapacity -= getRandomInt(8, 5);
+		if (getRandomInt(100, 0) < 7) {
+			needRepairing = true;
+			setState(State::NOTHING);
+		}
+		++mileage;
+		--timer;
+		if (timer == 0)
+			setState(State::NOTHING);
+		if (tankCapacity <= 0)
+			setState(State::STUCK);
+		return;
+	case State::SERVICE:
+		--timer;
+		if (timer == 0) {
+			setState(State::NOTHING);
+			needRepairing = 0;
+		}
+		return;
+	case State::NOTHING:
+		if (needRepairing)
+			if (getRandomInt(2, 0)) {
+				setState(State::SERVICE);
+				setTimer();
+			}
+		return;
+	case State::STUCK:
+		return;
+	}
+}
+
 void Car::go(Warehouse &warehouse) {
-	if (state == State::ROUTE)
+	if (state == State::ROUTE || state == State::STUCK || location == &warehouse)
 		return;
 	location = &warehouse;
-	timer = MAXTIME;
+	setTimer();
 	state = State::ROUTE;
 	return;
 }
@@ -60,6 +94,8 @@ std::string Car::getStateString() const {
 		return "On route";
 	case State::SERVICE:
 		return "In service";
+	case State::STUCK:
+		return "Stuck";
 	default:
 		return "BUG";
 	}
@@ -69,29 +105,18 @@ std::string Car::getLocation() const {
 	return location->getName();
 }
 
-void Car::changeOverTime() {
-	switch (state) {
-	case State::ROUTE:
-		tankCapacity -= getRandomInt(8, 5);
-		if (getRandomInt(100, 0) < 7) {
-			needRepairing = true;
-			state = State::NOTHING;
-		}
-		++mileage;
-		--timer;
-		if (timer == 0)
-			state = State::NOTHING;
-		return;
-	case State::SERVICE:
-		--timer;
-		return;
-	default:
-		break;
-	}
-	if (needRepairing) 
-		if (getRandomInt(2, 0)) {
-			state = State::SERVICE;
-			timer = MAXTIME;
-		}
+void Car::refill() {
+	if(timer == 0 && State::NOTHING)
+		tankCapacity = 100;
+	return;
+}
+
+void Car::setTimer() {
+	timer = MAXTIME;
+	return;
+}
+
+void Car::setState(State v_state) {
+	state = v_state;
 	return;
 }

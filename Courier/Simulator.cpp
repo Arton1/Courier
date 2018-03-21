@@ -43,9 +43,11 @@ void Simulator::simulate() {
 		cout << "1 - Buy a car." << endl;
 		cout << "2 - Sell a car." << endl;
 		cout << "3 - Move a car to the other warehouse." << endl;
-		cout << "4 - Unload a car." << endl;
-		cout << "5 - Load a car." << endl;
+		cout << "4 - Refill car" << endl;
+		cout << "5 - Unload a car." << endl;
+		cout << "6 - Load a car." << endl;
 		cout << "9 - Quit" << endl;
+		cout << "0 - Do nothing" << endl;
 		cin >> option;
 		cout << endl;
 		switch (option) {
@@ -58,14 +60,21 @@ void Simulator::simulate() {
 		case '3':
 			success = moveOption();
 			break;
+		case '4':
+			success = refillOption();
+			break;
 		case '9':
 			return;
+		case '0':
+			success = true;
+			break;
 		default:
 			break;
 		}
 		if (success)
 			for (int i = 0; i < company.getCarsAmount(); i++)
 				company.getCar(i).changeOverTime();
+		success = false;
 	}
 }
 
@@ -129,5 +138,18 @@ bool Simulator::moveOption() {
 	}
 	Car &car = company.getCar(--id);
 	car.go(company[--location]);
+	return true;
+}
+
+bool Simulator::refillOption() {
+	cout << "Which car do you want to refill?" << endl;
+	int id;
+	cin >> id;
+	if (id < 1 || id > company.getCarsAmount()) {
+		cout << "Car of this id doesn't exist." << endl << endl;
+		return false;
+	}
+	Car &car = company.getCar(--id);
+	car.refill();
 	return true;
 }
