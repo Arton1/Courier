@@ -11,7 +11,6 @@ using namespace std;
 Simulator::Simulator() :
 	daysCounter(0)
 {
-	company.buildWarehouse(5);
 }
 
 void Simulator::menu() {
@@ -47,7 +46,7 @@ void Simulator::simulate() {
 		cout << "5 - Unload a car." << endl;
 		cout << "6 - Load a car." << endl;
 		cout << "9 - Quit" << endl;
-		cout << "0 - Do nothing" << endl;
+		cout << "0 - Wait" << endl;
 		cin >> option;
 		cout << endl;
 		switch (option) {

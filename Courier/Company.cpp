@@ -2,12 +2,8 @@
 
 Company::Company()
 {
-}
-
-void Company::buildWarehouse(int howMany) {
-	for(int i = 0; i < howMany; i++)
+	for (int i = 0; i < Warehouse::AMOUNTOFWAREHOUSES; i++)
 		warehouses.push_back(Warehouse());
-	return;
 }
 
 Warehouse& Company::getWarehouse(int id) {
