@@ -16,5 +16,4 @@ public:
 	Car& getCar(int id);
 	void buyCar();
 	bool sellCar(int id);
-
 };

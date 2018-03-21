@@ -12,7 +12,7 @@ public:
 	Warehouse();
 	std::string getName();
 
-	static const int AMOUNTOFWAREHOUSES = 6;
+	static const int AMOUNTOFWAREHOUSES = 5;
 private:
 	static const std::string LOCATION[AMOUNTOFWAREHOUSES];
 	static const int AMOUNTOFCARS = 10;

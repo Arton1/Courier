@@ -2,16 +2,21 @@
 #include "Package.hpp"
 #include "Company.hpp"
 
-Car::Car() :
+Car::Car(Warehouse &warehouse) :
 	mileage(0),
 	tankCapacity(100),
 	needRepairing(false),
 	state(State::NOTHING)
 {
+	location = &warehouse;
 }
 
-void Car::go(int idOfWarehouse) {
+void Car::go(Warehouse &warehouse) {
+	if (state == State::ROUTE)
+		return;
+	location = &warehouse;
 	state = State::ROUTE;
+	return;
 }
 
 void Car::unload() {
@@ -42,4 +47,21 @@ int Car::getState() const {
 }
 bool Car::getNeedRepairing() const {
 	return needRepairing;
+}
+
+std::string Car::getStateString() const {
+	switch (state) {
+	case State::NOTHING:
+		return "Nothing";
+	case State::ROUTE:
+		return "On route";
+	case State::SERVICE:
+		return "In service";
+	default:
+		return "BUG";
+	}
+}
+
+std::string Car::getLocation() const {
+	return location->getName();
 }

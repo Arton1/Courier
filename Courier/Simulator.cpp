@@ -61,6 +61,9 @@ void Simulator::simulate() {
 		case '2':
 			sellOption();
 			break;
+		case '3':
+			moveOption();
+			break;
 		case '9':
 			return;
 		default:
@@ -70,15 +73,29 @@ void Simulator::simulate() {
 }
 
 void Simulator::printInfo() {
+	cout << "Locations: Warszawa, Krakow, Wroclaw, Szczecin, Gdansk" << endl;
 	cout << "List of cars:" << endl;
-	cout << "Id" << "      Location" << endl;
+	cout << left << setw(2) << "Id" << " "
+		<< left << setw(7) << "Mileage" << " "
+		<< left << setw(12) << "TankCapacity" << " "
+		<< left << setw(10) << "State" << " "
+		<< left << setw(13) << "NeedRepairing?" << " "
+		<< left << setw(8) << "Location"
+		<< endl;
 	printCarsInfo();
 	cout << endl;
 }
 
 void Simulator::printCarsInfo() {
 	for (int i = 0; i < company.getCarsAmount(); i++) {
-		cout << i << " " << setw(5) << company.getCar(i).getMileage() << endl;
+		Car &car = company.getCar(i);
+		cout << left << setw(2) << i+1 << " "
+			<< left << setw(7) << car.getMileage() << " "
+			<< left << setw(12) << car.getTankCapacity() << " "
+			<< left << setw(10) << car.getStateString() << " "
+			<< left << setw(14) << car.getNeedRepairing() << " "
+			<< left << setw(8) << car.getLocation()
+			<< endl;
 	}
 	return;
 }
@@ -87,10 +104,27 @@ void Simulator::sellOption() {
 	cout << "Type number of a car you want to sell:" << endl;
 	int option;
 	cin >> option;
-	if (company.sellCar(option))
+	if (company.sellCar(option - 1))
 		cout << "Car of number " << option << " succesfully sold." << endl;
 	else
 		cout << "Car of number " << option << " doesn't exist." << endl;
 	cout << endl;
 	return;
+}
+
+bool Simulator::moveOption() {
+	cout << "Which car do you want to move and where? (numbers only)" << endl;
+	int id, location;
+	cin >> id >> location;
+	if (id < 1 || id > company.getCarsAmount()) {
+		cout << "Car of this id doesn't exist." << endl;
+		return false;
+	}
+	if (location < 1 || location > Warehouse::AMOUNTOFWAREHOUSES) {
+		cout << "Location of this id doesn't exist." << endl;
+		return false;
+	}
+	Car &car = company.getCar(--id);
+	car.go(company[--location]);
+	return true;
 }

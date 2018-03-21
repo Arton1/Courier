@@ -6,9 +6,8 @@ const std::string Warehouse::LOCATION[Warehouse::AMOUNTOFWAREHOUSES] = {
 	"Warszawa",
 	"Krakow",
 	"Wroclaw",
-	"Kazimierz Dolny",
-	"Gdansk",
 	"Szczecin",
+	"Gdansk"
 };
 
 Warehouse::Warehouse():

@@ -23,15 +23,16 @@ int Company::getCarsAmount() const {
 }
 
 Car& Company::getCar(int id) {
-	return cars[id];
+	if (!(id < 0 || id >= cars.size()))
+		return cars[id];
 }
 
 void Company::buyCar() {
-	cars.push_back(Car());
+	cars.push_back(Car(warehouses[0]));
 }
 
 bool Company::sellCar(int id) {
-	if (id >= cars.size())
+	if (id < 0 || id >= cars.size())
 		return false;
 	std::vector<Car>::iterator iterator;
 	iterator = cars.begin();
@@ -39,3 +40,4 @@ bool Company::sellCar(int id) {
 	cars.erase(iterator);
 	return true;
 }
+
