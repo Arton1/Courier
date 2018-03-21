@@ -14,6 +14,6 @@ public:
 	Warehouse& operator[](int i);
 	int getCarsAmount() const;
 	Car& getCar(int id);
-	void buyCar();
+	bool buyCar();
 	bool sellCar(int id);
 };

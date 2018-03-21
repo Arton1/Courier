@@ -8,13 +8,6 @@
 
 using namespace std;
 
-int getRandomSeed() {
-	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-	std::mt19937 randomizer(seed);
-	return randomizer() % 100000;
-}
-
-
 Simulator::Simulator() :
 	daysCounter(0)
 {
@@ -43,6 +36,7 @@ void Simulator::menu() {
 void Simulator::simulate() {
 	cout << endl;
 	char option;
+	bool success = false;
 	while (1) {
 		printInfo();
 		cout << "Please choose your option:" << endl;
@@ -56,19 +50,22 @@ void Simulator::simulate() {
 		cout << endl;
 		switch (option) {
 		case '1':
-			company.buyCar();
+			success = company.buyCar();
 			break;
 		case '2':
-			sellOption();
+			success = sellOption();
 			break;
 		case '3':
-			moveOption();
+			success = moveOption();
 			break;
 		case '9':
 			return;
 		default:
 			break;
 		}
+		if (success)
+			for (int i = 0; i < company.getCarsAmount(); i++)
+				company.getCar(i).changeOverTime();
 	}
 }
 
@@ -100,16 +97,22 @@ void Simulator::printCarsInfo() {
 	return;
 }
 
-void Simulator::sellOption() {
+bool Simulator::sellOption() {
 	cout << "Type number of a car you want to sell:" << endl;
 	int option;
 	cin >> option;
-	if (company.sellCar(option - 1))
+	if (company.sellCar(option - 1)) {
 		cout << "Car of number " << option << " succesfully sold." << endl;
-	else
+		cout << endl;
+		return true;
+	}
+	else {
 		cout << "Car of number " << option << " doesn't exist." << endl;
-	cout << endl;
-	return;
+		cout << endl;
+		return false;
+	}
+	
+	
 }
 
 bool Simulator::moveOption() {
@@ -117,11 +120,11 @@ bool Simulator::moveOption() {
 	int id, location;
 	cin >> id >> location;
 	if (id < 1 || id > company.getCarsAmount()) {
-		cout << "Car of this id doesn't exist." << endl;
+		cout << "Car of this id doesn't exist." << endl << endl;
 		return false;
 	}
 	if (location < 1 || location > Warehouse::AMOUNTOFWAREHOUSES) {
-		cout << "Location of this id doesn't exist." << endl;
+		cout << "Location of this id doesn't exist." << endl << endl;
 		return false;
 	}
 	Car &car = company.getCar(--id);

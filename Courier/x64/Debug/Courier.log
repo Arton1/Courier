@@ -1,3 +1,4 @@
-﻿  Simulator.cpp
-c:\users\acer\documents\github\courier\courier\simulator.cpp(12): warning C4244: 'initializing': conversion from 'std::chrono::system_clock::rep' to 'unsigned int', possible loss of data
+﻿  Car.cpp
+c:\users\acer\documents\github\courier\courier\randomizer.h(8): warning C4244: 'initializing': conversion from 'std::chrono::system_clock::rep' to 'unsigned int', possible loss of data
+c:\users\acer\documents\github\courier\courier\randomizer.h(14): warning C4244: 'initializing': conversion from 'std::chrono::system_clock::rep' to 'unsigned int', possible loss of data
   Courier.vcxproj -> C:\Users\ACER\Documents\GitHub\Courier\x64\Debug\Courier.exe

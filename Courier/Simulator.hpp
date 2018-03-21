@@ -8,7 +8,7 @@ class Simulator {
 	void simulate();
 	void printInfo();
 	void printCarsInfo();
-	void sellOption();
+	bool sellOption();
 	bool moveOption();
 public:
 	Simulator();
@@ -16,4 +16,3 @@ public:
 	void menu();
 };
 
-int getRandomSeed();

@@ -27,8 +27,9 @@ Car& Company::getCar(int id) {
 		return cars[id];
 }
 
-void Company::buyCar() {
+bool Company::buyCar() {
 	cars.push_back(Car(warehouses[0]));
+	return true;
 }
 
 bool Company::sellCar(int id) {
