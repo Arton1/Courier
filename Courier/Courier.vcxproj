@@ -156,7 +156,7 @@
     <ClInclude Include="Car.hpp" />
     <ClInclude Include="Company.hpp" />
     <ClInclude Include="Package.hpp" />
-    <ClInclude Include="Randomizer.h" />
+    <ClInclude Include="Randomizer.hpp" />
     <ClInclude Include="Simulator.hpp" />
     <ClInclude Include="Warehouse.hpp" />
   </ItemGroup>

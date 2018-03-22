@@ -1,2 +1,9 @@
-﻿  Simulator.cpp
-  Courier.vcxproj -> C:\Users\ACER\Documents\GitHub\Courier\x64\Debug\Courier.exe
+﻿  Car.cpp
+c:\users\acer\documents\github\courier\courier\randomizer.hpp(10): warning C4244: 'argument': conversion from 'unsigned __int64' to 'unsigned int', possible loss of data
+  Generating Code...
+  Compiling...
+  Package.cpp
+c:\users\acer\documents\github\courier\courier\randomizer.hpp(10): warning C4244: 'argument': conversion from 'unsigned __int64' to 'unsigned int', possible loss of data
+  Generating Code...
+Package.obj : error LNK2005: "int __cdecl getRandomInt(int,int)" (?getRandomInt@@YAHHH@Z) already defined in Car.obj
+C:\Users\ACER\Documents\GitHub\Courier\x64\Debug\Courier.exe : fatal error LNK1169: one or more multiply defined symbols found

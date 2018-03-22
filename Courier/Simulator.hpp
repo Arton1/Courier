@@ -12,6 +12,8 @@ class Simulator {
 	bool sellOption();
 	bool moveOption();
 	bool refillOption();
+	bool loadOption();
+	bool unloadOption();
 public:
 	Simulator();
 	~Simulator() {};

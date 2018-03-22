@@ -31,7 +31,7 @@ Car& Company::getCar(int id) {
 }
 
 bool Company::buyCar() {
-	cars.push_back(new Car(*warehouses[0]));
+	cars.push_back(new Car(warehouses[0]));
 	return true;
 }
 
@@ -44,6 +44,11 @@ bool Company::sellCar(int id) {
 	advance(iterator, id);
 	cars.erase(iterator);
 	return true;
+}
+
+bool Company::loadCar(int id) {
+//	cars[id]->load()
+	return false;
 }
 
 int Company::getWarehousesAmount() const {

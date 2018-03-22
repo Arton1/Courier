@@ -19,4 +19,5 @@ public:
 	Car& getCar(int id);
 	bool buyCar();
 	bool sellCar(int id);
+	bool loadCar(int id);
 };

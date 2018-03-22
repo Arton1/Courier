@@ -1,7 +1,7 @@
 #include "Package.hpp"
 #include "Warehouse.hpp"
 #include "Company.hpp"
-#include "Randomizer.h"
+#include "Randomizer.hpp"
 
 Package::Package(Warehouse *vLocation) :
 	weight(5),

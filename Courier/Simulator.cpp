@@ -61,6 +61,10 @@ void Simulator::simulate() {
 		case '4':
 			success = refillOption();
 			break;
+		case '5':
+			success = loadOption();
+		case '6':
+			success = unloadOption();
 		case '9':
 			return;
 		case '0':
@@ -126,8 +130,6 @@ bool Simulator::sellOption() {
 		cout << endl;
 		return false;
 	}
-	
-	
 }
 
 bool Simulator::moveOption() {
@@ -143,7 +145,7 @@ bool Simulator::moveOption() {
 		return false;
 	}
 	Car &car = company->getCar(--id);
-	car.go((*company)[--location]);
+	car.go(&(company->getWarehouse(--location)));
 	return true;
 }
 
@@ -158,4 +160,24 @@ bool Simulator::refillOption() {
 	Car &car = company->getCar(--id);
 	car.refill();
 	return true;
+}
+
+bool Simulator::loadOption() {
+	cout << "Type number of a car you want to load:" << endl;
+	int option;
+	cin >> option;
+	if (company->loadCar(option - 1)) {
+		cout << "Car of number " << option << " succesfully sold." << endl;
+		cout << endl;
+		return true;
+	}
+	else {
+		cout << "Car of number " << option << " doesn't exist." << endl;
+		cout << endl;
+		return false;
+	}
+}
+
+bool Simulator::unloadOption() {
+	return false;
 }

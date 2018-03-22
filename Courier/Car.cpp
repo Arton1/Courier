@@ -1,7 +1,7 @@
 #include "Car.hpp"
 #include "Package.hpp"
 #include "Company.hpp"
-#include "Randomizer.h"
+#include "Randomizer.hpp"
 
 Car::Car(Warehouse *warehouse) :
 	mileage(0),
@@ -53,9 +53,9 @@ void Car::changeOverTime() {
 }
 
 void Car::go(Warehouse *warehouse) {
-	if (state == State::ROUTE || state == State::STUCK || location == &warehouse)
+	if (state == State::ROUTE || state == State::STUCK || location == warehouse)
 		return;
-	location = *warehouse;
+	location = warehouse;
 	setTimer();
 	state = State::ROUTE;
 	return;
@@ -63,7 +63,7 @@ void Car::go(Warehouse *warehouse) {
 
 void Car::unload() {
 	for (int i = 0; i < packages.size(); i++) {
-		if (&(packages.at(i)->getLocation()) == location) {
+		if (packages.at(i)->getDestination() == location->getId()) {
 			delete packages[i];
 			std::vector<Package*>::iterator iterator;
 			iterator = packages.begin();
