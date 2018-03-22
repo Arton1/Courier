@@ -3,11 +3,12 @@
 #include "Company.hpp"
 
 class Simulator {
-    Company company;
+    std::unique_ptr<Company> company;
 	int daysCounter;
 	void simulate();
 	void printInfo();
 	void printCarsInfo();
+	void printPackagesInfo();
 	bool sellOption();
 	bool moveOption();
 	bool refillOption();

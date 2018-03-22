@@ -3,14 +3,19 @@
 #include "Company.hpp"
 #include "Randomizer.h"
 
-Car::Car(Warehouse &warehouse) :
+Car::Car(Warehouse *warehouse) :
 	mileage(0),
 	tankCapacity(100),
 	needRepairing(false),
 	state(State::NOTHING),
 	timer(0)
 {
-	location = &warehouse;
+	location = warehouse;
+}
+
+Car::~Car() {
+	for (int i = 0; i < packages.size(); i++)
+		delete packages[i];
 }
 
 void Car::changeOverTime() {
@@ -47,25 +52,33 @@ void Car::changeOverTime() {
 	}
 }
 
-void Car::go(Warehouse &warehouse) {
+void Car::go(Warehouse *warehouse) {
 	if (state == State::ROUTE || state == State::STUCK || location == &warehouse)
 		return;
-	location = &warehouse;
+	location = *warehouse;
 	setTimer();
 	state = State::ROUTE;
 	return;
 }
 
 void Car::unload() {
-	this->state = State::NOTHING;
+	for (int i = 0; i < packages.size(); i++) {
+		if (&(packages.at(i)->getLocation()) == location) {
+			delete packages[i];
+			std::vector<Package*>::iterator iterator;
+			iterator = packages.begin();
+			advance(iterator, i);
+			packages.erase(iterator);
+		}
+	}
 }
 
-void Car::load() {
-	packages.push_back(Package());
+void Car::load(Package *package) {
+	packages.push_back(package);
 }
 
-void Car::operator<<(Package package) {
-	packages.push_back(Package(package));
+void Car::operator<<(Package *package) {
+	packages.push_back(package);
 }
 
 void Car::repair() {

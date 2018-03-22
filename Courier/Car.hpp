@@ -13,18 +13,19 @@ class Car {
 	int tankCapacity;
 	State state;
 	bool needRepairing;
-	std::vector<Package> packages;
+	std::vector<Package*> packages;
 	Warehouse *location;
 	int timer;
 private:
 	void setTimer();
 	void setState(State state);
 public:
-	Car(Warehouse &warehouse);
-	void go(Warehouse &warehouse);
+	Car(Warehouse *warehouse);
+	~Car();
+	void go(Warehouse *warehouse);
 	void unload();
-	void load();
-	void operator<<(Package package);
+	void load(Package *package);
+	void operator<<(Package *package);
 	void repair();
 	void refill();
 	void changeOverTime();

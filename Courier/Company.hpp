@@ -5,13 +5,16 @@
 #include "Car.hpp"
 
 class Company {
-	std::vector<Warehouse> warehouses;
-	std::vector<Car> cars;
+	std::vector<Warehouse*> warehouses;
+	std::vector<Car*> cars;
 public:
+	static const int AMOUNTOFWAREHOUSES = 5;
+
 	Company();
-	void buildWarehouse(int howMany);
+	~Company();
 	Warehouse& getWarehouse(int id);
 	Warehouse& operator[](int i);
+	int getWarehousesAmount() const;
 	int getCarsAmount() const;
 	Car& getCar(int id);
 	bool buyCar();

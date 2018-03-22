@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
 
+class Warehouse;
+
 class Package {
 	int weight;
 	int volume;
-	std::string name;
-	int id;
-	std::string toWhere;
+	int dest;
 public:
-	Package();
+	Package(Warehouse *vLocation);
+	int getWeight() const;
+	int getDestination() const;
 };

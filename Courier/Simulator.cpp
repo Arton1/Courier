@@ -2,8 +2,6 @@
 #include "Simulator.hpp"
 #include "Warehouse.hpp"
 #include <iostream>
-#include <chrono>
-#include <random>
 #include <iomanip>
 
 using namespace std;
@@ -11,6 +9,7 @@ using namespace std;
 Simulator::Simulator() :
 	daysCounter(0)
 {
+	company = std::make_unique<Company>();
 }
 
 void Simulator::menu() {
@@ -46,12 +45,12 @@ void Simulator::simulate() {
 		cout << "5 - Unload a car." << endl;
 		cout << "6 - Load a car." << endl;
 		cout << "9 - Quit" << endl;
-		cout << "0 - Wait" << endl;
+		cout << "0 - Wait a day." << endl;
 		cin >> option;
 		cout << endl;
 		switch (option) {
 		case '1':
-			success = company.buyCar();
+			success = company->buyCar();
 			break;
 		case '2':
 			success = sellOption();
@@ -71,14 +70,15 @@ void Simulator::simulate() {
 			break;
 		}
 		if (success)
-			for (int i = 0; i < company.getCarsAmount(); i++)
-				company.getCar(i).changeOverTime();
+			for (int i = 0; i < company->getCarsAmount(); i++)
+				company->getCar(i).changeOverTime();
 		success = false;
 	}
 }
 
 void Simulator::printInfo() {
-	cout << "Locations: Warszawa, Krakow, Wroclaw, Szczecin, Gdansk" << endl;
+	cout << "Locations:" << endl << "Warszawa, Krakow, Wroclaw, Szczecin, Gdansk" << endl;
+	printPackagesInfo();
 	cout << "List of cars:" << endl;
 	cout << left << setw(2) << "Id" << " "
 		<< left << setw(7) << "Mileage" << " "
@@ -92,8 +92,8 @@ void Simulator::printInfo() {
 }
 
 void Simulator::printCarsInfo() {
-	for (int i = 0; i < company.getCarsAmount(); i++) {
-		Car &car = company.getCar(i);
+	for (int i = 0; i < company->getCarsAmount(); i++) {
+		Car &car = company->getCar(i);
 		cout << left << setw(2) << i+1 << " "
 			<< left << setw(7) << car.getMileage() << " "
 			<< left << setw(12) << car.getTankCapacity() << " "
@@ -105,11 +105,18 @@ void Simulator::printCarsInfo() {
 	return;
 }
 
+void Simulator::printPackagesInfo() {
+	for (int i = 0; i < company->getWarehousesAmount(); i++) 
+			cout << left << setw((*company)[i].getName().length()+1) << (*company)[i].getPackagesAmount() << " ";
+	cout << endl;
+	return;
+}
+
 bool Simulator::sellOption() {
 	cout << "Type number of a car you want to sell:" << endl;
 	int option;
 	cin >> option;
-	if (company.sellCar(option - 1)) {
+	if (company->sellCar(option - 1)) {
 		cout << "Car of number " << option << " succesfully sold." << endl;
 		cout << endl;
 		return true;
@@ -127,16 +134,16 @@ bool Simulator::moveOption() {
 	cout << "Which car do you want to move and where? (numbers only)" << endl;
 	int id, location;
 	cin >> id >> location;
-	if (id < 1 || id > company.getCarsAmount()) {
+	if (id < 1 || id > company->getCarsAmount()) {
 		cout << "Car of this id doesn't exist." << endl << endl;
 		return false;
 	}
-	if (location < 1 || location > Warehouse::AMOUNTOFWAREHOUSES) {
+	if (location < 1 || location > Company::AMOUNTOFWAREHOUSES) {
 		cout << "Location of this id doesn't exist." << endl << endl;
 		return false;
 	}
-	Car &car = company.getCar(--id);
-	car.go(company[--location]);
+	Car &car = company->getCar(--id);
+	car.go((*company)[--location]);
 	return true;
 }
 
@@ -144,11 +151,11 @@ bool Simulator::refillOption() {
 	cout << "Which car do you want to refill?" << endl;
 	int id;
 	cin >> id;
-	if (id < 1 || id > company.getCarsAmount()) {
+	if (id < 1 || id > company->getCarsAmount()) {
 		cout << "Car of this id doesn't exist." << endl << endl;
 		return false;
 	}
-	Car &car = company.getCar(--id);
+	Car &car = company->getCar(--id);
 	car.refill();
 	return true;
 }

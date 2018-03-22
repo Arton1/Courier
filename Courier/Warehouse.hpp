@@ -4,17 +4,19 @@
 
 class Car;
 class Company;
+class Package;
 
 class Warehouse {
 	int id;
-	std::vector<Car*> carsInWarehouse;
+	std::vector<Package*> packetsInside;
 public:
 	Warehouse();
-	std::string getName();
-
-	static const int AMOUNTOFWAREHOUSES = 5;
+	~Warehouse();
+	std::string getName() const ;
+	int getId() const;
+	int getPackagesAmount() const ;
+	Package& getPackage(int id);
 private:
-	static const std::string LOCATION[AMOUNTOFWAREHOUSES];
-	static const int AMOUNTOFCARS = 10;
+	static const std::string LOCATION[];
 	static int numberOfWarehouses;
 };

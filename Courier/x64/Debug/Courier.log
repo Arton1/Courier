@@ -1,10 +1,2 @@
 ﻿  Simulator.cpp
-  Company.cpp
-c:\users\acer\documents\github\courier\courier\company.cpp(18): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
-c:\users\acer\documents\github\courier\courier\company.cpp(24): warning C4715: 'Company::getCar': not all control paths return a value
-  Compiling...
-  Car.cpp
-c:\users\acer\documents\github\courier\courier\randomizer.h(8): warning C4244: 'initializing': conversion from 'std::chrono::system_clock::rep' to 'unsigned int', possible loss of data
-  Generating Code...
   Courier.vcxproj -> C:\Users\ACER\Documents\GitHub\Courier\x64\Debug\Courier.exe
