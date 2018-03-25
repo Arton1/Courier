@@ -1,2 +1,5 @@
-﻿  Simulator.cpp
+﻿  Company.cpp
+c:\users\arton\desktop\courier\courier\company.cpp(27): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+c:\users\arton\desktop\courier\courier\company.cpp(67): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+c:\users\arton\desktop\courier\courier\company.cpp(33): warning C4715: 'Company::getCar': not all control paths return a value
   Courier.vcxproj -> C:\Users\Arton\Desktop\Courier\x64\Debug\Courier.exe

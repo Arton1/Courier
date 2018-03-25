@@ -1,34 +1,34 @@
 #pragma once
 #include <vector>
-#include "Package.hpp"
 
 class Company;
 class Warehouse;
+class Package;
 
 class Car {
 	enum State {ROUTE, NOTHING, SERVICE, STUCK};
-	static const int MAXTIME = 4;
+	static const int MAXTIME = 4;	//number of ticks for "timer" variable.
 
 	int mileage;
 	int tankCapacity;
 	State state;
-	bool needRepairing;
-	std::vector<Package*> packages;
-	Warehouse *location;
-	int timer;
+	bool needRepairing;				//true if the car needs reparing, cant do anything if true and have to wait till repaired
+	std::vector<Package*> packages;	//
+	Warehouse *location;			//current location of car or location to which the car is going
+	int timer;						//helping variable. Acts like a clock. It takes MAXTIME ticks to move a car or repair it.
 private:
-	void setTimer();
+	void setTimer();				//sets "timer" variable to MAXTIME or decreases it by 1.
 	void setState(State state);
 public:
 	Car(Warehouse *warehouse);
-	~Car();
+	~Car();							//frees the pointers of Package vector
 	void go(Warehouse *warehouse);
 	void unload();
-	void load(Package *package);
-	void operator<<(Package *package);
+	void load();
+	void operator<<(Package *package); //used to push the particular package into a packages array
 	void repair();
 	void refill();
-	void changeOverTime();
+	void changeOverTime();			//makes use of "time" variable
 
 	//getters
 	int getMileage() const;
@@ -37,4 +37,6 @@ public:
 	std::string getStateString() const;
 	bool getNeedRepairing() const;
 	std::string getLocation() const;
+	int getPackagesAmount() const;
+	int getPackagesMatchingAmount() const;
 };

@@ -10,5 +10,7 @@ class Package {
 public:
 	Package(Warehouse *vLocation);
 	int getWeight() const;
+	int getVolume() const;
 	int getDestination() const;
+	bool doesDestinationMatch(Warehouse *warehouse);
 };

@@ -38,6 +38,14 @@ int Warehouse::getPackagesAmount() const {
 	return packetsInside.size();
 }
 
-Package& Warehouse::getPackage(int id) {
-	return *packetsInside[id];
+Package* Warehouse::throwAwayLastPackage() { //please see the .hpp file before using.
+	if (getPackagesAmount() == 0)
+		return NULL;
+	const int position = getPackagesAmount() - 1;
+	std::vector<Package*>::iterator iterator;
+	iterator = packetsInside.begin();
+	advance(iterator, position);
+	Package *package = packetsInside[position];
+	packetsInside.erase(iterator);
+	return package;
 }

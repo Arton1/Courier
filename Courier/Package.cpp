@@ -11,6 +11,7 @@ Package::Package(Warehouse *vLocation) :
 	do {
 		randomNumber = Randomizer::getInstance().getRandomInt(Company::AMOUNTOFWAREHOUSES, 0);
 	} while (vLocation->getId() == randomNumber);
+	dest = randomNumber;
 }
 
 int Package::getWeight() const {
@@ -19,4 +20,14 @@ int Package::getWeight() const {
 
 int Package::getDestination() const {
 	return dest;
+}
+
+bool Package::doesDestinationMatch(Warehouse *warehouse) {
+	if (warehouse->getId() == getDestination())
+		return true;
+	return false;
+}
+
+int Package::getVolume() const {
+	return volume;
 }

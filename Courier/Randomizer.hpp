@@ -2,7 +2,7 @@
 #include <chrono>
 #include <random>
 
-class Randomizer {
+class Randomizer { //singleton. It is used to get a random number.
 private:
 	std::mt19937 engine;
 	Randomizer();

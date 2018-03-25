@@ -1,13 +1,13 @@
 #include "Company.hpp"
 #include "Simulator.hpp"
 #include "Warehouse.hpp"
+#include "Car.hpp"
 #include <iostream>
 #include <iomanip>
 
 using namespace std;
 
-Simulator::Simulator() :
-	daysCounter(0)
+Simulator::Simulator()
 {
 	company = std::make_unique<Company>();
 }
@@ -93,8 +93,10 @@ void Simulator::printInfo() {
 			<< left << setw(7) << "Mileage" << " "
 			<< left << setw(12) << "TankCapacity" << " "
 			<< left << setw(10) << "State" << " "
-			<< left << setw(13) << "NeedRepairing?" << " "
-			<< left << setw(8) << "Location"
+			<< left << setw(14) << "NeedRepairing?" << " "
+			<< left << setw(8) << "Location" << " "
+			<< left << setw(5) << "Pckgs" << " "
+			<< left << setw(13) << "PckgsMatching"
 			<< endl;
 		printCarsInfo();
 		cout << endl;
@@ -104,12 +106,14 @@ void Simulator::printInfo() {
 void Simulator::printCarsInfo() {
 	for (int i = 0; i < company->getCarsAmount(); i++) {
 		Car &car = company->getCar(i);
-		cout << left << setw(2) << i+1 << " "
+		cout << left << setw(2) << i + 1 << " "
 			<< left << setw(7) << car.getMileage() << " "
 			<< left << setw(12) << car.getTankCapacity() << " "
 			<< left << setw(10) << car.getStateString() << " "
 			<< left << setw(14) << car.getNeedRepairing() << " "
-			<< left << setw(5) << car.getLocation()
+			<< left << setw(8) << car.getLocation() << " "
+			<< left << setw(5) << car.getPackagesAmount() << " "
+			<< left << setw(13) << car.getPackagesMatchingAmount()
 			<< endl;
 	}
 	return;
@@ -172,6 +176,23 @@ bool Simulator::loadOption() {
 	int option;
 	cin >> option;
 	if (company->loadCar(option - 1)) {
+		cout << "Car of number " << option << " succesfully loaded." << endl;
+		cout << endl;
+		return true;
+	}
+	else {
+		cout << "Car of number " << option << " doesn't exist." << endl;
+		cout << endl;
+		return false;
+	}
+	return false;
+}
+
+bool Simulator::unloadOption() {
+	cout << "Type number of a car you want to unload:" << endl;
+	int option;
+	cin >> option;
+	if (company->unloadCar(option - 1)) {
 		cout << "Car of number " << option << " succesfully sold." << endl;
 		cout << endl;
 		return true;
@@ -181,8 +202,5 @@ bool Simulator::loadOption() {
 		cout << endl;
 		return false;
 	}
-}
-
-bool Simulator::unloadOption() {
 	return false;
 }

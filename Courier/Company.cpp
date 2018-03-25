@@ -1,4 +1,6 @@
 #include "Company.hpp"
+#include "Warehouse.hpp"
+#include "Car.hpp"
 
 Company::Company()
 {
@@ -47,9 +49,19 @@ bool Company::sellCar(int id) {
 }
 
 bool Company::loadCar(int id) {
-//	cars[id]->load()
-	return false;
+	if (id < 0 || id >= cars.size())
+		return false;
+	cars[id]->load();
+	return true;
 }
+
+bool Company::unloadCar(int id) {
+	if (id < 0 || id >= cars.size())
+		return false;
+	cars[id]->unload();
+	return true;
+}
+
 
 int Company::getWarehousesAmount() const {
 	return warehouses.size();
