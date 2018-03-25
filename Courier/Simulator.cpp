@@ -13,16 +13,16 @@ Simulator::Simulator() :
 }
 
 void Simulator::menu() {
-	cout << "Please, choose your option:" << endl;
-	cout << "1 - Start a new simulation." << endl;
-	cout << "2 - Quit" << endl;
 	char option;
 	while (1) {
+		cout << "Please, choose your option:" << endl;
+		cout << "1 - Start a new simulation." << endl;
+		cout << "2 - Quit" << endl;
 		cin >> option;
 		switch (option) {
 		case '1':
 			simulate();
-			return;
+			break;
 		case '2':
 			return;
 		default:
@@ -42,8 +42,8 @@ void Simulator::simulate() {
 		cout << "2 - Sell a car." << endl;
 		cout << "3 - Move a car to the other warehouse." << endl;
 		cout << "4 - Refill car" << endl;
-		cout << "5 - Unload a car." << endl;
-		cout << "6 - Load a car." << endl;
+		cout << "5 - Load a car." << endl;
+		cout << "6 - Unload a car." << endl;
 		cout << "9 - Quit" << endl;
 		cout << "0 - Wait a day." << endl;
 		cin >> option;
@@ -63,8 +63,10 @@ void Simulator::simulate() {
 			break;
 		case '5':
 			success = loadOption();
+			break;
 		case '6':
 			success = unloadOption();
+			break;
 		case '9':
 			return;
 		case '0':
@@ -78,21 +80,25 @@ void Simulator::simulate() {
 				company->getCar(i).changeOverTime();
 		success = false;
 	}
+	return;
 }
 
 void Simulator::printInfo() {
-	cout << "Locations:" << endl << "Warszawa, Krakow, Wroclaw, Szczecin, Gdansk" << endl;
-	printPackagesInfo();
-	cout << "List of cars:" << endl;
-	cout << left << setw(2) << "Id" << " "
-		<< left << setw(7) << "Mileage" << " "
-		<< left << setw(12) << "TankCapacity" << " "
-		<< left << setw(10) << "State" << " "
-		<< left << setw(13) << "NeedRepairing?" << " "
-		<< left << setw(8) << "Location"
-		<< endl;
-	printCarsInfo();
-	cout << endl;
+	if (company->getCarsAmount() != 0) {
+		cout << "Locations:" << endl << "Warszawa, Krakow, Wroclaw, Szczecin, Gdansk" << endl;
+		printPackagesInfo();
+		cout << left << ": Packages" << endl << endl;
+		cout << "List of cars:" << endl;
+		cout << left << setw(2) << "Id" << " "
+			<< left << setw(7) << "Mileage" << " "
+			<< left << setw(12) << "TankCapacity" << " "
+			<< left << setw(10) << "State" << " "
+			<< left << setw(13) << "NeedRepairing?" << " "
+			<< left << setw(8) << "Location"
+			<< endl;
+		printCarsInfo();
+		cout << endl;
+	}
 }
 
 void Simulator::printCarsInfo() {
@@ -103,7 +109,7 @@ void Simulator::printCarsInfo() {
 			<< left << setw(12) << car.getTankCapacity() << " "
 			<< left << setw(10) << car.getStateString() << " "
 			<< left << setw(14) << car.getNeedRepairing() << " "
-			<< left << setw(8) << car.getLocation()
+			<< left << setw(5) << car.getLocation()
 			<< endl;
 	}
 	return;
@@ -112,7 +118,6 @@ void Simulator::printCarsInfo() {
 void Simulator::printPackagesInfo() {
 	for (int i = 0; i < company->getWarehousesAmount(); i++) 
 			cout << left << setw((*company)[i].getName().length()+1) << (*company)[i].getPackagesAmount() << " ";
-	cout << endl;
 	return;
 }
 

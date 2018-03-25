@@ -9,7 +9,7 @@ Package::Package(Warehouse *vLocation) :
 {
 	int randomNumber;
 	do {
-		randomNumber = getRandomInt(Company::AMOUNTOFWAREHOUSES, 0);
+		randomNumber = Randomizer::getInstance().getRandomInt(Company::AMOUNTOFWAREHOUSES, 0);
 	} while (vLocation->getId() == randomNumber);
 }
 

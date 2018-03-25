@@ -21,8 +21,8 @@ Car::~Car() {
 void Car::changeOverTime() {
 	switch (state) {
 	case State::ROUTE:
-		tankCapacity -= getRandomInt(8, 5);
-		if (getRandomInt(100, 0) < 7) {
+		tankCapacity -= Randomizer::getInstance().getRandomInt(8, 5);
+		if (Randomizer::getInstance().getRandomInt(100, 0) < 7) {
 			needRepairing = true;
 			setState(State::NOTHING);
 		}
@@ -42,7 +42,7 @@ void Car::changeOverTime() {
 		return;
 	case State::NOTHING:
 		if (needRepairing)
-			if (getRandomInt(2, 0)) {
+			if (Randomizer::getInstance().getRandomInt(2, 0)) {
 				setState(State::SERVICE);
 				setTimer();
 			}

@@ -33,7 +33,7 @@
     <ClCompile Include="Simulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Randomize.cpp">
+    <ClCompile Include="Randomizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,13 +1,13 @@
-#ifndef RANDOMIZER
-#define RANDOMIZER
+#pragma once
 #include <chrono>
 #include <random>
-#include <iostream>
-using namespace std;
 
-int getRandomInt(int range, int offset) {
-	long long unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-	std::mt19937 randomizer(seed);
-	return randomizer() % range + offset;
-}
-#endif
+class Randomizer {
+private:
+	std::mt19937 engine;
+	Randomizer();
+	Randomizer(const Randomizer &) {};
+public:
+	static Randomizer& getInstance();
+	int getRandomInt(int range, int offset);
+};
