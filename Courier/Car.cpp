@@ -84,7 +84,7 @@ void Car::load() {
 	for (int i = 0; i < amount; i++) { //moving the pointer from warehouse to car
 		Package *package = location->throwAwayLastPackage();
 		if (package != NULL) {
-			*this << package;
+			packages.push_back(package);
 		}
 	}
 }

@@ -12,7 +12,7 @@ public:
 	static const int AMOUNTOFWAREHOUSES = 5; //amount of warehouses in a company
 
 	Company();
-	~Company();
+	~Company(); //frees the warehouse and car vectors.
 	//getters
 	Warehouse& getWarehouse(int id);
 	Warehouse& operator[](int i);

@@ -75,9 +75,12 @@ void Simulator::simulate() {
 		default:
 			break;
 		}
-		if (success)
+		if (success) {//changes variables inside objects due to "time"
 			for (int i = 0; i < company->getCarsAmount(); i++)
 				company->getCar(i).changeOverTime();
+			for (int i = 0; i < company->getWarehousesAmount(); i++)
+				company->getWarehouse(i).addRandomAmountOfPackages();
+		}
 		success = false;
 	}
 	return;

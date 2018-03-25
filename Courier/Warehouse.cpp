@@ -1,7 +1,7 @@
 #include "Warehouse.hpp"
 #include "Package.hpp"
 #include "Company.hpp"
-#include <iostream>
+#include "Randomizer.hpp"
 
 int Warehouse::numberOfWarehouses = 0;
 
@@ -36,6 +36,13 @@ int Warehouse::getId() const {
 
 int Warehouse::getPackagesAmount() const {
 	return packetsInside.size();
+}
+
+bool Warehouse::addRandomAmountOfPackages() {
+	int amount = Randomizer::getInstance().getRandomInt(5, 0);
+	for(int i=0; i<amount; i++)
+		packetsInside.emplace_back();
+	return true;
 }
 
 Package* Warehouse::throwAwayLastPackage() { //please see the .hpp file before using.

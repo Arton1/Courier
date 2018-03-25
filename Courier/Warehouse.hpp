@@ -14,6 +14,7 @@ public:
 	std::string getName() const ;
 	int getId() const;
 	int getPackagesAmount() const ;
+	bool addRandomAmountOfPackages();
 	Package* throwAwayLastPackage(); // \/
 	//returns a pointer to a package 
 	//that gets removed from an array inside the object. 
