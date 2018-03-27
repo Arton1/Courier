@@ -1,11 +1,2 @@
-﻿  Warehouse.cpp
-c:\users\arton\desktop\courier\courier\warehouse.cpp(38): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  Simulator.cpp
-  Car.cpp
-c:\users\arton\desktop\courier\courier\car.cpp(150): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  main.cpp
-  Package.cpp
-  Company.cpp
-  Courier.vcxproj -> C:\Users\Arton\Desktop\Courier\x64\Debug\Courier.exe
+﻿  Simulator.cpp
+  Courier.vcxproj -> C:\Users\ACER\Documents\GitHub\Courier\x64\Debug\Courier.exe

@@ -9,12 +9,13 @@ using namespace std;
 
 Simulator::Simulator()
 {
-	company = std::make_unique<Company>();
+	company = std::unique_ptr<Company>(new Company());
 }
 
 void Simulator::menu() {
 	char option;
 	while (1) {
+
 		cout << "Please, choose your option:" << endl;
 		cout << "1 - Start a new simulation." << endl;
 		cout << "2 - Quit" << endl;
@@ -28,6 +29,7 @@ void Simulator::menu() {
 		default:
 			break;
 		}
+		company.reset(new Company()); //deleting the last Company instance and making a new one
 	}
 }
 
