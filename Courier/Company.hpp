@@ -19,10 +19,12 @@ public:
 	int getWarehousesAmount() const;
 	int getCarsAmount() const;
 	Car& getCar(int id);
-	
+
 	bool buyCar();
 	//they call methods of the particular car instance
 	bool sellCar(int id);
 	bool loadCar(int id);
 	bool unloadCar(int id);
+	bool refillCar(int id);
+	bool moveCar(int id, int destination);
 };

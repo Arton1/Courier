@@ -9,7 +9,6 @@ using namespace std;
 
 Simulator::Simulator()
 {
-	company = std::unique_ptr<Company>(new Company());
 }
 
 void Simulator::menu() {
@@ -29,14 +28,15 @@ void Simulator::menu() {
 		default:
 			break;
 		}
-		company.reset(new Company()); //deleting the last Company instance and making a new one
 	}
 }
 
 void Simulator::simulate() {
-	cout << endl;
+    company.reset();
+    company = std::unique_ptr<Company>(new Company());
 	char option;
 	bool success = false;
+	cout << endl;
 	while (1) {
 		printInfo();
 		cout << "Please choose your option:" << endl;
@@ -125,7 +125,7 @@ void Simulator::printCarsInfo() {
 }
 
 void Simulator::printPackagesInfo() {
-	for (int i = 0; i < company->getWarehousesAmount(); i++) 
+	for (int i = 0; i < company->getWarehousesAmount(); i++)
 			cout << left << setw((*company)[i].getName().length()+1) << (*company)[i].getPackagesAmount() << " ";
 	return;
 }
@@ -148,32 +148,36 @@ bool Simulator::sellOption() {
 
 bool Simulator::moveOption() {
 	cout << "Which car do you want to move and where? (numbers only)" << endl;
-	int id, location;
-	cin >> id >> location;
-	if (id < 1 || id > company->getCarsAmount()) {
-		cout << "Car of this id doesn't exist." << endl << endl;
+	int option, location;
+	cin >> option >> location;
+	if (company->moveCar(option - 1, location-1)) {
+		cout << "Car of number " << option << " succesfully moved." << endl;
+		cout << endl;
+		return true;
+	}
+	else {
+		cout << "Car or location of this number doesn't exist." << endl;
+		cout << endl;
 		return false;
 	}
-	if (location < 1 || location > Company::AMOUNTOFWAREHOUSES) {
-		cout << "Location of this id doesn't exist." << endl << endl;
-		return false;
-	}
-	Car &car = company->getCar(--id);
-	car.go(&(company->getWarehouse(--location)));
-	return true;
+	return false;
 }
 
 bool Simulator::refillOption() {
 	cout << "Which car do you want to refill?" << endl;
-	int id;
-	cin >> id;
-	if (id < 1 || id > company->getCarsAmount()) {
-		cout << "Car of this id doesn't exist." << endl << endl;
+	int option;
+	cin >> option;
+	if (company->refillCar(option - 1)) {
+		cout << "Car of number " << option << " succesfully refilled." << endl;
+		cout << endl;
+		return true;
+	}
+	else {
+		cout << "Car of number " << option << " doesn't exist." << endl;
+		cout << endl;
 		return false;
 	}
-	Car &car = company->getCar(--id);
-	car.refill();
-	return true;
+	return false;
 }
 
 bool Simulator::loadOption() {

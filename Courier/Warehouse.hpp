@@ -16,8 +16,8 @@ public:
 	int getPackagesAmount() const ;
 	bool addRandomAmountOfPackages();
 	Package* throwAwayLastPackage(); // \/
-	//returns a pointer to a package 
-	//that gets removed from an array inside the object. 
+	//returns a pointer to a package
+	//that gets removed from an array inside the object.
 	//Have to be careful using it, as the memory has to be freed later on.
 private:
 	static const std::string LOCATION[]; //names of locations

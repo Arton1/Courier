@@ -51,17 +51,25 @@ bool Company::sellCar(int id) {
 bool Company::loadCar(int id) {
 	if (id < 0 || id >= cars.size())
 		return false;
-	cars[id]->load();
-	return true;
+	return cars[id]->load();
 }
 
 bool Company::unloadCar(int id) {
 	if (id < 0 || id >= cars.size())
 		return false;
-	cars[id]->unload();
-	return true;
+	return cars[id]->unload();
 }
 
+bool Company::refillCar(int id){
+    if (id < 0 || id >= cars.size())
+		return false;
+    return cars[id]->refill();
+}
+bool Company::moveCar(int id, int destination){
+    if (id < 0 || id >= cars.size() || destination < 0 || destination >= warehouses.size())
+		return false;
+    return cars[id]->go(warehouses[destination]);
+}
 
 int Company::getWarehousesAmount() const {
 	return warehouses.size();

@@ -1,0 +1,64 @@
+# depslib dependency file v1.0
+1522182313 source:/home/arton/Desktop/Courier/Courier/Car.cpp
+	"Car.hpp"
+	"Package.hpp"
+	"Company.hpp"
+	"Warehouse.hpp"
+	"Randomizer.hpp"
+
+1522182059 /home/arton/Desktop/Courier/Courier/Car.hpp
+	<vector>
+	<string>
+
+1522173661 /home/arton/Desktop/Courier/Courier/Package.hpp
+	<string>
+
+1522182122 /home/arton/Desktop/Courier/Courier/Company.hpp
+	<list>
+	<vector>
+
+1522178875 /home/arton/Desktop/Courier/Courier/Warehouse.hpp
+	<string>
+	<vector>
+
+1522173661 /home/arton/Desktop/Courier/Courier/Randomizer.hpp
+	<chrono>
+	<random>
+
+1522179579 source:/home/arton/Desktop/Courier/Courier/Company.cpp
+	"Company.hpp"
+	"Warehouse.hpp"
+	"Car.hpp"
+
+1522177901 source:/home/arton/Desktop/Courier/main.cpp
+	"Courier/Simulator.hpp"
+	<memory>
+
+1522173661 source:/home/arton/Desktop/Courier/Courier/Package.cpp
+	"Package.hpp"
+	"Warehouse.hpp"
+	"Company.hpp"
+	"Randomizer.hpp"
+
+1522173661 source:/home/arton/Desktop/Courier/Courier/Randomizer.cpp
+	"Randomizer.hpp"
+
+1522182313 source:/home/arton/Desktop/Courier/Courier/Simulator.cpp
+	"Company.hpp"
+	"Simulator.hpp"
+	"Warehouse.hpp"
+	"Car.hpp"
+	<iostream>
+	<iomanip>
+
+1522173661 /home/arton/Desktop/Courier/Courier/Simulator.hpp
+	<memory>
+	"Company.hpp"
+
+1522180446 source:/home/arton/Desktop/Courier/Courier/Warehouse.cpp
+	"Warehouse.hpp"
+	"Package.hpp"
+	"Company.hpp"
+	"Randomizer.hpp"
+	<iostream>
+

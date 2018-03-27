@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 class Company;
 class Warehouse;
@@ -22,12 +23,12 @@ private:
 public:
 	Car(Warehouse *warehouse);
 	~Car();							//frees the pointers of Package vector
-	void go(Warehouse *warehouse);
-	void unload();
-	void load();
+	bool go(Warehouse *warehouse);
+	bool unload();
+	bool load();
 	void operator<<(Package *package); //used to push the particular package into a packages array
-	void repair();
-	void refill();
+	bool repair();
+	bool refill();
 	void changeOverTime();			//makes use of "time" variable
 
 	//getters

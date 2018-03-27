@@ -2,6 +2,7 @@
 #include "Package.hpp"
 #include "Company.hpp"
 #include "Randomizer.hpp"
+#include <iostream>
 
 int Warehouse::numberOfWarehouses = 0;
 
@@ -24,6 +25,7 @@ Warehouse::Warehouse():
 Warehouse::~Warehouse() {
 	for (int i = 0; i < packetsInside.size(); i++)
 		delete packetsInside[i];
+    numberOfWarehouses--;
 }
 
 std::string Warehouse::getName() const {
@@ -41,7 +43,7 @@ int Warehouse::getPackagesAmount() const {
 bool Warehouse::addRandomAmountOfPackages() {
 	int amount = Randomizer::getInstance().getRandomInt(5, 0);
 	for(int i=0; i<amount; i++)
-		packetsInside.emplace_back();
+		packetsInside.emplace_back(new Package(this));
 	return true;
 }
 

@@ -4,7 +4,6 @@
 #include "Warehouse.hpp"
 #include "Randomizer.hpp"
 
-
 Car::Car(Warehouse *warehouse) :
 	mileage(0),
 	tankCapacity(100),
@@ -54,18 +53,18 @@ void Car::changeOverTime() {
 	}
 }
 
-void Car::go(Warehouse *warehouse) {
+bool Car::go(Warehouse *warehouse) {
 	if (state == State::ROUTE || state == State::STUCK || location == warehouse)
-		return;
+		return false;
 	location = warehouse;
 	setTimer();
 	state = State::ROUTE;
-	return;
+	return true;
 }
 
-void Car::unload() {
+bool Car::unload() {
 	if (state == State::ROUTE || state == State::STUCK)
-		return;
+		return false;
 	for (int i = 0; i < getPackagesAmount(); i++) { //deleting memory if location of package and warehouse is the same
 		if (packages[i]->doesDestinationMatch(location)) {
 			delete packages[i];
@@ -75,27 +74,32 @@ void Car::unload() {
 			packages.erase(iterator);
 		}
 	}
+	return true;
 }
 
-void Car::load() {
+bool Car::load() {
 	if (state == State::ROUTE || state == State::STUCK)
-		return;
+		return false;
 	int amount = location->getPackagesAmount();
 	for (int i = 0; i < amount; i++) { //moving the pointer from warehouse to car
 		Package *package = location->throwAwayLastPackage();
 		if (package != NULL) {
-			packages.push_back(package);
+        packages.push_back(package);
 		}
 	}
+	return true;
 }
 
 void Car::operator<<(Package *package) {
 	packages.push_back(package);
 }
 
-void Car::repair() {
-	needRepairing = false;
-	return;
+bool Car::repair() {
+    if(needRepairing){
+        needRepairing = false;
+        return true;
+    }
+	return false;
 }
 
 int Car::getMileage() const {
@@ -130,10 +134,12 @@ std::string Car::getLocation() const {
 	return location->getName();
 }
 
-void Car::refill() {
-	if(timer == 0 && State::NOTHING)
+bool Car::refill() {
+	if(timer == 0 && State::NOTHING){
 		tankCapacity = 100;
-	return;
+		return true;
+    }
+	return false;
 }
 
 void Car::setTimer() {

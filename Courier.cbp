@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Courier" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Courier" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Courier" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="Courier/Car.cpp" />
+		<Unit filename="Courier/Car.hpp" />
+		<Unit filename="Courier/Company.cpp" />
+		<Unit filename="Courier/Company.hpp" />
+		<Unit filename="Courier/Package.cpp" />
+		<Unit filename="Courier/Package.hpp" />
+		<Unit filename="Courier/Randomizer.cpp" />
+		<Unit filename="Courier/Randomizer.hpp" />
+		<Unit filename="Courier/Simulator.cpp" />
+		<Unit filename="Courier/Simulator.hpp" />
+		<Unit filename="Courier/Warehouse.cpp" />
+		<Unit filename="Courier/Warehouse.hpp" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
